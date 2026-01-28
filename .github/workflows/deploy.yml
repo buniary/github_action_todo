@@ -8,8 +8,8 @@ on:
 
 # 코드를 생성할 수 있는 권한 부여
 permissions:
-    contents: write
-
+  contents: write
+  
 # 브라우저 인식할 수 있는 파일 생성
 jobs:
   build:
