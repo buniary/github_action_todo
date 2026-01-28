@@ -1,0 +1,19 @@
+# workflow의 이름
+name: Build Static Site
+
+# main 브랜치에 푸시가 발생하면 작동한다
+on:
+  push:
+    branches: [ main ]
+
+# 브라우저 인식할 수 있는 파일 생성
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # uses, name 
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
