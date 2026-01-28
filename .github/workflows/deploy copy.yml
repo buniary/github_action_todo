@@ -1,24 +1,23 @@
+# workflow의 이름
 name: Build Static Site
 
+# main 브랜치에 푸시가 발생하면 작동한다
 on:
   push:
     branches: [ main ]
 
+# 코드를 생성할 수 있는 권한 부여
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-  
+  contents: write
+
+# 브라우저 인식할 수 있는 파일 생성
 jobs:
   build:
+    # 가상의 폴더 생성
     runs-on: ubuntu-latest
     steps:
       # uses, name 
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
       - name: Install dependencies
         run: npm install
       - name: Build
@@ -28,7 +27,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
