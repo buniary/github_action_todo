@@ -9,6 +9,7 @@ on:
 # 브라우저 인식할 수 있는 파일 생성
 jobs:
   build:
+    # 가상의 폴더 생성
     runs-on: ubuntu-latest
     steps:
       # uses, name 
@@ -17,3 +18,8 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
